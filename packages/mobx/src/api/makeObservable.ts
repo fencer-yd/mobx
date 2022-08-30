@@ -37,7 +37,9 @@ export function makeObservable<T extends object, AdditionalKeys extends Property
             )
         }
         // Default to decorators
-        annotations ??= collectStoredAnnotations(target)
+        if (!annotations) {
+            annotations = collectStoredAnnotations(target)
+        }
 
         // Annotate
         ownKeys(annotations).forEach(key => adm.make_(key, annotations![key]))
