@@ -221,7 +221,9 @@ export class ObservableObjectAdministration
             // Skip key subscription outside derivation
             return key in this.target_
         }
-        this.pendingKeys_ ||= new Map()
+        if (!this.pendingKeys_) {
+          this.pendingKeys_ = new Map()
+        }
         let entry = this.pendingKeys_.get(key)
         if (!entry) {
             entry = new ObservableValue(
@@ -454,7 +456,9 @@ export class ObservableObjectAdministration
                     return null
                 }
             }
-            options.name ||= __DEV__ ? `${this.name_}.${key.toString()}` : "ObservableObject.key"
+            if (!options.name) {
+              options.name = __DEV__ ? `${this.name_}.${key.toString()}` : "ObservableObject.key"
+            }
             options.context = this.proxy_ || this.target_
             const cachedDescriptor = getCachedObservablePropDescriptor(key)
             const descriptor = {
