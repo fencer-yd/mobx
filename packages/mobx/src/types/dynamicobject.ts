@@ -85,5 +85,8 @@ export function asDynamicObservableObject(
 ): IIsObservableObject {
     assertProxies()
     target = asObservableObject(target, options)
-    return (target[$mobx].proxy_ ??= new Proxy(target, objectProxyTraps))
+    if (!target[$mobx].proxy_) {
+        target[$mobx].proxy_ = new Proxy(target, objectProxyTraps))
+    }
+    return (target[$mobx].proxy_;
 }
