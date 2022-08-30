@@ -86,7 +86,7 @@ export function asDynamicObservableObject(
     assertProxies()
     target = asObservableObject(target, options)
     if (!target[$mobx].proxy_) {
-        target[$mobx].proxy_ = new Proxy(target, objectProxyTraps))
+        target[$mobx].proxy_ = new Proxy(target, objectProxyTraps)
     }
-    return (target[$mobx].proxy_;
+    return target[$mobx].proxy_;
 }
